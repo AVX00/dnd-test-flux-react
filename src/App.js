@@ -10,18 +10,24 @@ const List = styled.ul`
   list-style: none;
   border-radius: 4px;
   background-color: #202430;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   width: 400px;
   height: 600px;
   padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
   list-style: none;
+  @media (max-width: 400px) {
+    width: 100%;
+    margin: 10px;
+  }
 `;
 
 const PictureItem = styled.li`
   box-sizing: border-box;
   max-height: 100px;
+  height: max-content;
   margin: 10px;
   border-radius: 4px;
 `;
