@@ -11,11 +11,10 @@ const List = styled.ul`
   border-radius: 4px;
   background-color: #202430;
   width: 400px;
-  height: 600px;
+  height: fit-content;
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
   list-style: none;
   @media (max-width: 400px) {
@@ -47,10 +46,32 @@ const App = () => {
 
   return (
     <DragDropContext onDragEnd={handleDragPicture}>
-      <Droppable droppableId="images">
+      <Droppable droppableId="picturesArray">
         {(provided) => (
           <List {...provided.droppableProps} ref={provided.innerRef}>
-            {pictures.map(({ id, src }, index) => {
+            {pictures.picturesArray.map(({ id, src }, index) => {
+              return (
+                <Draggable key={id} draggableId={id} index={index}>
+                  {(provided) => (
+                    <PictureItem
+                      {...provided.draggableProps}
+                      ref={provided.innerRef}
+                      {...provided.dragHandleProps}
+                    >
+                      <Image src={src} alt="this is an alternative text" />
+                    </PictureItem>
+                  )}
+                </Draggable>
+              );
+            })}
+            {provided.placeholder}
+          </List>
+        )}
+      </Droppable>
+      <Droppable droppableId="picturesArray2">
+        {(provided) => (
+          <List {...provided.droppableProps} ref={provided.innerRef}>
+            {pictures.picturesArray2.map(({ id, src }, index) => {
               return (
                 <Draggable key={id} draggableId={id} index={index}>
                   {(provided) => (
